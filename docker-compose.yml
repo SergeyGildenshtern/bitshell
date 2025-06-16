@@ -1,0 +1,13 @@
+name: bitshell
+
+services:
+  app:
+    build: .
+    container_name: bitshell-app
+    stdin_open: true
+    tty: true
+    volumes:
+      - wallet-volume:/app/.wallet
+
+volumes:
+  wallet-volume:
