@@ -14,3 +14,5 @@ docker-compose up -d && docker attach bitshell-app
 * Add seed phrases
 * Add fee selection
 * Refactor `funds_sender.rb`
+* Support mainnet network
+* Improve utxo selection
