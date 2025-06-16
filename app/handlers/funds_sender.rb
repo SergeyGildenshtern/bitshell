@@ -3,6 +3,10 @@
 require_relative 'base'
 
 class FundsSender < Base
+  INPUT_SIZE_IN_BYTES  = 148
+  OUTPUT_SIZE_IN_BYTES = 34
+  HEADER_SIZE_IN_BYTES = 10
+
   def call
     amount, address = ask_for_transaction_details
     return unless sufficient_funds?(amount)
@@ -117,7 +121,11 @@ class FundsSender < Base
   end
 
   def calculate_fee(in_count:, out_count:)
-    fee_per_vbyte * ((in_count * 148) + (out_count * 34) + 10)
+    fee_per_vbyte * (
+      (in_count * INPUT_SIZE_IN_BYTES) +
+      (out_count * OUTPUT_SIZE_IN_BYTES) +
+      HEADER_SIZE_IN_BYTES
+    )
   end
 
   def fee_per_vbyte
